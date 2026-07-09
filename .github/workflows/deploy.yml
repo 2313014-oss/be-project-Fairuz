@@ -1,0 +1,23 @@
+name: Backend CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: docker build -t be-project-fairuz .
+
+      - name: Stop old container
+        run: docker rm -f be-project-fairuz || true
+
+      - name: Run Docker Container
+        run: docker run -d --name be-project-fairuz -p 3000:3000 be-project-fairuz
