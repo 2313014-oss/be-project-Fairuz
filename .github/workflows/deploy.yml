@@ -17,8 +17,8 @@ jobs:
         run: docker build -t be-project-fairuz .
 
       - name: Stop old container
-  run: docker rm -f be-project-fairuz
-  continue-on-error: true
+        run: docker rm -f be-project-fairuz
+        continue-on-error: true
 
       - name: Run Docker Container
         run: docker run -d --name be-project-fairuz -p 3000:3000 be-project-fairuz
